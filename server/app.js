@@ -32,5 +32,5 @@ app.post('/api/users', users.addUser);
 app.put('/api/user/:id', users.updateUser);
 app.delete('/api/user/:id', users.deleteUser);
 
-app.listen(3000);
+module.exports = app.listen(3000);
 console.log('Listening on port 3000...');

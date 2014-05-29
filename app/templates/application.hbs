@@ -7,7 +7,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Your App</a>
+            <a class="navbar-brand" href="#">Device Manager</a>
+            <ul>
+                <li>{{#link-to 'devices.index'}}See all devices{{/link-to}}</li>
+                <li>{{#link-to 'devices.create'}}Add a device{{/link-to}}</li>
+            </ul>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
         </div>
