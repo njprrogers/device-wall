@@ -1,9 +1,13 @@
 {
-    "name": "device-wall",
-    "description": "Device Wall Application",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-        "express": "3.x"
-    }
+  "name": "device-wall",
+  "description": "Device Wall Application",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x"
+  },
+  "devDependencies": {
+    "cors": "^2.3.1",
+    "body-parser": "^1.2.0"
+  }
 }

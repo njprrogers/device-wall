@@ -2,8 +2,9 @@ exports.findById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving device: ' + id);
     db.collection('devices', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
+        var ourId = parseInt(id, 10);
+        collection.findOne({'id':ourId}, function(err, item) {
+            res.send({device : item});
         });
     });
 };
@@ -11,7 +12,7 @@ exports.findById = function(req, res) {
 exports.findAll = function(req, res) {
     db.collection('devices', function(err, collection) {
         collection.find().toArray(function(err, items) {
-            res.send(items);
+            res.send({ devices : items});
         });
     });
 };
@@ -32,18 +33,23 @@ exports.addDevice = function(req, res) {
 };
 
 exports.updateDevice = function(req, res) {
-    var id = req.params.id;
-    var device = req.body;
+    var id = parseInt(req.params.id,10);
+    var device = req.body.device;
+    console.log(id);
+    console.log(device);
+    device.id = id;
     console.log('Updating device: ' + id);
-    console.log(JSON.stringify(device));
+    device._id = new BSON.ObjectID(device._id);
+    console.log(device);
     db.collection('devices', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, device, {safe:true}, function(err, result) {
+        collection.update({'_id':new BSON.ObjectID(device._id)}, device, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating device: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('' + result + ' document(s) updated');
-                res.send(device);
+                console.log(device);
+                res.send({device: device});
             }
         });
     });

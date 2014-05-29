@@ -2,7 +2,14 @@
 
 <ul>
  {{#each model}}
- <li>{{#link-to 'user' this}}{{this.id}}{{/link-to}}</li>
+    <li>
+        {{#link-to 'user' this}}{{this.name}} {{this.email}}{{/link-to}}
+        <ul>
+            {{#each devices}}
+                {{this.id}}
+            {{/each}}
+        </ul>
+    </li>
   {{/each}}
 </ul>
 

@@ -1,7 +1,6 @@
 App.Router.map(function () {
 //    this.route("devices", { path: "/devices" });
   this.resource('devices', function(){
-      this.route('new');
     this.resource('device', { path: '/:device_id' }, function(){
       this.route('edit');
     });
@@ -14,8 +13,4 @@ App.Router.map(function () {
     });
     this.route('create');
   });
-    this.resource('index',{path : '/'});
-    this.resource('posts', { path: '/posts' }, function() {
-        this.route('new');
-    });
 });

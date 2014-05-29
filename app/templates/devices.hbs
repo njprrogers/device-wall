@@ -1,9 +1,22 @@
-<h1>Devices</h1>
+<div class="row">
+    <div>
+        <div class="col-md-3">
+            <div class="well sidebar-nav">
+                <strong>Devices</strong>
+                <ul class="list-group">
+                    {{#each model}}
+                        <li class="list-group-item">{{#link-to 'device' this}}{{this.name}} {{this.id}}     {{name}} {{/link-to}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            {{outlet}}
+        </div>
+    </div>
+</div>
+</div>
+</div>
 
-<ul>
- {{#each model}}
- <li>{{#link-to 'device' this}}{{this.id}}{{/link-to}}</li>
-  {{/each}}
-</ul>
-
-{{outlet}}
+{{debugger}}
+{{log record}}

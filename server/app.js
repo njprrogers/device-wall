@@ -1,24 +1,28 @@
 var express = require('express');
 var app = express();
-console.log('here');
+var bodyParser = require('body-parser');
 require('./routes/db');
-console.log('here');
+var cors = require('cors');
 
 var devices = require('./routes/devices'),
     users = require('./routes/users');
+//app.all('/*', function(req, res, next) {
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//  next();
+//});
+app.use(cors());
+app.options('*', cors()); // include before other routes
+//app.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
+app.use(bodyParser());
 
-app.configure(function () {
-    app.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
-    app.use(express.bodyParser());
-});
-app.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
 app.get('/api/devices', devices.findAll);
 app.get('/api/devices/:id', devices.findById);
+
+app.post('/api/devices/:id', devices.updateDevice);
 app.post('/api/devices', devices.addDevice);
+
 app.put('/api/devices/:id', devices.updateDevice);
 app.delete('/api/devices/:id', devices.deleteDevice);
 

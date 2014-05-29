@@ -3,7 +3,7 @@ exports.findById = function(req, res) {
     console.log('Retrieving user: ' + id);
     db.collection('users', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
+            res.send({user : item});
         });
     });
 };
@@ -11,7 +11,7 @@ exports.findById = function(req, res) {
 exports.findAll = function(req, res) {
     db.collection('users', function(err, collection) {
         collection.find().toArray(function(err, items) {
-            res.send(items);
+            res.send({users : items});
         });
     });
 };
